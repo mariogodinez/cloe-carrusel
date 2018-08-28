@@ -1,0 +1,148 @@
+@import './base.styl'
+@import './colors.styl'
+// @import './animate.styl'
+
+@import './utils.styl'
+@import './media.styl'
+
+
+
+body
+  margin 0
+  padding 0
+  font-size .9em
+  font-family 'Lato', sans-serif
+.main-content
+  padding-top 30px
+  
+.my-header  
+  position fixed
+  width 100%
+  z-index 100000000000000000000
+  height 80px !important
+  &-menu
+    transition .3s
+    position relative
+    left -100vw
+  &-notification
+    cursor pointer
+    transition .3s
+    
+    &:hover
+      background hannah
+
+
+        
+input[type="checkbox"].check
+ &:not(:checked), &:checked
+   position absolute
+   left -9999px
+ &:not(:checked) + label, &:checked + label
+   position relative
+   padding-left 1.95em
+   cursor pointer
+ &:not(:checked) + label:before, &:checked + label:before
+   content ''
+   position absolute
+   left 0
+   top 0
+   width 1.5em
+   height 1.5em
+   border 2px solid #ccc
+   background #fff
+   border-radius 4px
+   box-shadow inset 0 1px 3px rgba(0, 0, 0, 0.1)
+ &:not(:checked) + label:after, &:checked + label:after
+   content '✔'
+   position absolute
+   top .2em
+   left .2em
+   font-size 1.2em
+   line-height 0.8
+   color gold
+   transition all .2s
+ &:not(:checked) + label:after
+   opacity 0
+   transform scale(0)
+ &:checked + label:after
+   opacity 1
+   transform scale(1)
+ &:disabled
+   &:not(:checked) + label:before
+     box-shadow none
+     border-color #bbb
+     background-color #ddd
+   &:checked + label
+     &:before
+       box-shadow none
+       border-color #bbb
+       background-color #ddd
+     &:after
+       color #999
+   + label
+     color #aaa
+ &:checked:focus + label:before, &:not(:checked):focus + label:before
+   border 2px solid #4778d9
+.search-box-header
+  input
+    position relative
+    font-size 1.1em
+    padding .8em
+    width 100%
+    border 1px solid #1D2831
+    padding 0.6em
+    transition 0.3s
+    color #f2f2f2
+    border-radius 4px
+    &:focus
+      box-shadow 0em 0em 1em #f2f2f2
+  &-icon
+    color #1F2C39
+    position absolute
+    top .5em
+    right -.5em
+  &:hover
+    cursor pointer
+  &:after
+    content ''
+    width 1px
+    background #1D2831
+    position absolute
+    top 0em
+    right 1em
+    height 2.7em
+      
+
+.search-box
+  position fixed
+  top 65px
+  width 96%
+  z-index 10
+  .main-box
+    border 1px solid lightgray
+    font-size 1.5em
+    z-index 10
+  &:after
+    content ''
+    position absolute
+    top -9px
+    right 7em
+    border-top 10px solid transparent
+    border-right 10px solid transparent
+    border-left 10px solid transparent
+    border-bottom 10px solid darkblue
+    
+  input
+    background transparent
+    border 0
+    outline 0
+    width 100%
+    color white
+    padding .6em
+    font-size 1em
+  
+  
+
+label:hover:before
+  border 2px solid #4778d9 !important
+
