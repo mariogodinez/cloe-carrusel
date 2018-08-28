@@ -1,13 +1,11 @@
 <script>
 	import Spiner from './Spinner.vue'
-	import ModalError from './ModalError.vue'
 
 
 	export default {
 		name: 'login',
 		components:{
 			Spiner,
-			ModalError
 		},
 		data(){
 			return {
@@ -109,7 +107,6 @@
 <template class="padding0">
 	<section class="back-pattern height100vh padding0" style="padding-top: 0px !important;">
 
-	<ModalError v-if="error" :msg="errorMessage"></ModalError>
 	<Spiner v-if="spiner"></Spiner>
 		<article class="font1-3em flex flex-center relative flex-middle height100vh">
 			<transition appear name="custom-classes-transition" appear-active-class="animated flipInY" enter-active-class="animated flipInY" leave-active-class="">

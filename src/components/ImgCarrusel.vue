@@ -1,7 +1,5 @@
 <script>
-  import Filters from './Filters.vue'
   import Spinner from './Spinner.vue'
-  import ModalError from './ModalError.vue'
 
 
 
@@ -10,9 +8,6 @@
     data() {
       return {
         spin: false,
-        money:'',
-        error: false,
-        selectType: '',
         swiperOption: {
         },
         showfilters: false,
@@ -43,105 +38,20 @@
       }
     },
     components:{
-      Filters,
       Spinner,
-      ModalError
     },
     computed: {
-      apiUrl(){
-        return window.apiUrl
-      },
+      
       slidesAct(){
         return this.slides
       }
     },
     watch:{
-      money(val){
-        if(val.length > 3){
-          // val.split()
-        }
-      }
+      
     },
     methods:{
-      hideFilter(){
-        this.$parent.$emit('showFilter')
-      },
-      onLastSlide(){
-      console.log('hola last')
-      },
-      onAfterSlideChange(){
-      console.log('hola after')
-      },
-      onBeforeSlideChange(){
-        console.log('hola before')
-      },
-      goBlocks(slide){
-
-        let self = this
-        localStorage.lastBlockSelected = slide.type
-        // this.$router.push({name: 'product-select-detail'})
-
-        this.spin = true
-        axios.post(apiUrl + '/api/descriptions_by_type', {'type' : localStorage.getItem('lastBlockSelected')})
-        .then(response=>{
-          console.log(response)
-
-          self.productsOfImg = response.data.descriptions
-
-          if(response.data.descriptions.length  == 0){
-            self.error = true
-            self.selectType = localStorage.lastBlockSelected
-            setTimeout(function(){
-              self.error = false
-              self.spin = false
-            }, 4000)
-            return false
-          }
-
-
-          axios.post(apiUrl + '/api/products_by_name',  { name: response.data.descriptions[0].name })
-            .then(res =>{
-              self.spin = false
-
-              if(res.data.length == 0){
-                // self.errorMsg = `No se encuentra disponible. Elige otro opción`
-                 self.error = true
-                 self.selectType = localStorage.lastBlockSelected
-                 setTimeout(function(){
-                  self.error = false
-                 }, 4000)
-                 return false
-              }
-
-              let data = res.data
-              data.forEach(item => item.selected = false)
-              data[0].selected =true
-              data.forEach(item => item.searched = response.data.descriptions[0].name)
-
-              localStorage.lastProductDetail = JSON.stringify(data)
-              self.$router.push({name: 'product-detail'})
-
-            })
-            .catch(err =>{
-              self.spin = false
-              self.error = true
-              setTimeout(function(){
-                  self.error = false
-                 }, 4000)
-
-            })
-
-        })
-        .catch(err=>{
-          self.spin = false
-          self.error = true
-          setTimeout(function(){
-            self.error = false
-           }, 4000)
-          // console.log(err.response.data)
-        })
-
-      }
+      
+      
     },
     created(){
       let self = this
@@ -155,60 +65,10 @@
               console.log(err)
             })
 
-
-      // for(var i = 0; i < 50; i++){
-      //   this.slides.push({
-      //       name: 'Marmol Crema Marfil Blanco',
-      //       count: 796,
-      //       id: 0,
-      //       imgUrl: './dist/img/img-1.jpg'
-      //     })
-      // }
-      // this.spin = true
-      // axios.post(apiUrl + '/api/main_page')
-      //   .then(res =>{
-      //     console.log(res)
-          
-      //     self.slides = res.data
-      //     setTimeout(function(){
-      //       self.spin = false
-      //     }, 2000)
-      //   })
-      //   .catch(err =>{
-      //     console.log(err.response)
-      //     setTimeout(function(){
-      //       self.spin = false
-      //     }, 500)
-
-      //   })
-
-
-
-
     },
     mounted() {
       
-     let self = this
-      this.$on('hideFilter', function(data){
-        self.showfilters = false
-        if(data.status){
-
-        }
-      })
-
-      this.$on('filtered', function(data){
-        self.showfilters = false
-        if(data.status){
-          self.slides = data.datos
-        }
-      })
-
-      this.$on('showFilter', function(data){
-        self.showfilters = true
-        if(data.status){
-
-        }
-      })
+     
     }
   }
 </script>
